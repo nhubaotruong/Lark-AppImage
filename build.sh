@@ -24,14 +24,11 @@ if [ "$GITHUB_RUNNING_ACTION" == true ]; then
 fi
 
 wget -cO ./pkg2appimage.AppImage https://github.com/AppImageCommunity/pkg2appimage/releases/download/continuous/pkg2appimage--x86_64.AppImage
-wget -cO ./appimagetool.AppImage https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
 
 chmod +x ./pkg2appimage.AppImage
-chmod +x ./appimagetool.AppImage
 
 if [ "$GITHUB_RUNNING_ACTION" == true ]; then
-    # ARCH=x86_64 ./appimagetool.AppImage --comp gzip lark/lark.AppDir -n -u "gh-releases-zsync|$GH_USER|$GH_REPO|latest|Lark*.AppImage.zsync"
-    ./pkg2appimage.AppImage lark.yml -u "gh-releases-zsync|$GH_USER|$GH_REPO|latest|Lark*.AppImage.zsync"
+    _updateinformation="gh-releases-zsync|$GH_USER|$GH_REPO|latest|Lark*.AppImage.zsync" ./pkg2appimage.AppImage lark.yml
     echo "APP_NAME=$APP_NAME" >>"$GITHUB_ENV"
     echo "APP_SHORT_NAME=$APP_NAME" >>"$GITHUB_ENV"
     echo "APP_VERSION=$VERSION" >>"$GITHUB_ENV"
