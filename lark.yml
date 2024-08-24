@@ -3,9 +3,9 @@ app: lark
 ingredients:
   dist: noble
   debs:
-    - /tmp/lark.deb
+    - /var/tmp/lark.deb
   script:
-    - wget -O /tmp/lark.deb $(wget -qO- https://www.larksuite.com/api/downloads | jq -r '.versions.Linux_deb_x64.download_link')
+    - wget -O /var/tmp/lark.deb $(wget -qO- https://www.larksuite.com/api/downloads | jq -r '.versions.Linux_deb_x64.download_link')
 
 script:
   - cp opt/bytedance/lark/product_logo_256.svg bytedance-lark.svg

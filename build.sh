@@ -31,8 +31,6 @@ chmod +x ./appimagetool.AppImage
 
 ./pkg2appimage.AppImage lark.yml
 
-# appimagetool --comp gzip ./lark/lark.AppDir
-
 if [ "$GITHUB_RUNNING_ACTION" == true ]; then
     ARCH=x86_64 ./appimagetool.AppImage --comp gzip lark/lark.AppDir -n -u "gh-releases-zsync|$GH_USER|$GH_REPO|latest|Lark*.AppImage.zsync"
     echo "APP_NAME=$APP_NAME" >>"$GITHUB_ENV"
