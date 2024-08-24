@@ -23,8 +23,8 @@ if [ "$GITHUB_RUNNING_ACTION" == true ]; then
     fi
 fi
 
-wget -O ./pkg2appimage.AppImage https://github.com/AppImageCommunity/pkg2appimage/releases/download/continuous/pkg2appimage--x86_64.AppImage
-wget -O ./appimagetool.AppImage https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+wget -cO ./pkg2appimage.AppImage https://github.com/AppImageCommunity/pkg2appimage/releases/download/continuous/pkg2appimage--x86_64.AppImage
+wget -cO ./appimagetool.AppImage https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
 
 chmod +x ./pkg2appimage.AppImage
 chmod +x ./appimagetool.AppImage
