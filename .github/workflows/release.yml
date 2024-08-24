@@ -1,0 +1,37 @@
+name: Build AppImage
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "5 */12 * * *"
+  push:
+    branches:
+      - "main"
+
+jobs:
+  version:
+    name: Lark AppImage
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        id: build
+        run: |
+            bash build.sh
+      - name: Upload artifact
+        if: ${{ env.APP_UPDATE_NEEDED == 'true' }}
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.APP_SHORT_NAME }}.AppImage
+          path: 'out'
+      - name: Release
+        if: ${{ env.APP_UPDATE_NEEDED == 'true' }}
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          title: ${{ env.APP_NAME }} AppImage ${{ env.APP_VERSION }}
+          automatic_release_tag: latest
+          prerelease: false
+          files: |
+            out/
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
