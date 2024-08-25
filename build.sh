@@ -6,9 +6,12 @@ GITHUB_RUNNING_ACTION=$GITHUB_ACTIONS
 APP_NAME=Lark
 VERSION=$(wget -qO- https://www.larksuite.com/api/downloads | jq -r '.versions.Linux_deb_x64.version_number' | cut -d'@' -f2)
 
+echo $GITHUB_USER
+echo $GITHUB_REPOSITORY
+
 if [ "$GITHUB_RUNNING_ACTION" == true ]; then
     # If we check only for version here.
-    RELEASE_VERSION=$(gh api -H "Accept: application/vnd.github+json" /repos/"$GITHUB_USER"/"$GITHUB_REPOSITORY"/releases/latest | jq -r ".name" | sed 's/'"$APP_NAME"' AppImage //g')
+    RELEASE_VERSION=$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/$GITHUB_USER/$GITHUB_REPOSITORY/releases/latest | jq -r ".name" | sed 's/'"$APP_NAME"' AppImage //g')
 
     if [ "$VERSION" = "$RELEASE_VERSION" ]; then
         echo "::set-output name=app_update_needed::false"
