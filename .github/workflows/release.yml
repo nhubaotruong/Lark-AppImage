@@ -18,6 +18,8 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+      - name: Install the gh cli
+        uses: ksivamuthu/actions-setup-gh-cli@v3
       - name: Build
         id: build
         shell: bash
