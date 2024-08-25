@@ -21,7 +21,7 @@ jobs:
       - name: Build
         id: build
         run: |
-            ./ build.sh
+            ./build.sh
         env:
           GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
