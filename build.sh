@@ -28,7 +28,7 @@ wget -cO ./pkg2appimage.AppImage https://github.com/AppImageCommunity/pkg2appima
 chmod +x ./pkg2appimage.AppImage
 
 if [ "$GITHUB_RUNNING_ACTION" == true ]; then
-    _updateinformation="gh-releases-zsync|$GITHUB_USER|$GITHUB_REPOSITORY|latest|Lark*.AppImage.zsync" ./pkg2appimage.AppImage lark.yml
+    _updateinformation="gh-releases-zsync|$($GITHUB_REPOSITORY | tr '/' '|')|latest|Lark*.AppImage.zsync" ./pkg2appimage.AppImage lark.yml
     echo "APP_NAME=$APP_NAME" >>"$GITHUB_ENV"
     echo "APP_SHORT_NAME=$APP_NAME" >>"$GITHUB_ENV"
     echo "APP_VERSION=$VERSION" >>"$GITHUB_ENV"
