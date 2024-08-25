@@ -24,8 +24,7 @@ jobs:
         run: |
             bash build.sh
         env:
-          GH_USER: ${{ env.GITHUB_USER }}
-          GH_REPO: ${{ env.GITHUB_REPOSITORY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifact
         if: ${{ env.APP_UPDATE_NEEDED == 'true' }}
         uses: actions/upload-artifact@v1
