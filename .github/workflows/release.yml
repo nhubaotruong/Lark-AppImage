@@ -23,7 +23,6 @@ jobs:
         run: |
             ./build.sh
         env:
-          GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifact
         if: ${{ env.APP_UPDATE_NEEDED == 'true' }}
